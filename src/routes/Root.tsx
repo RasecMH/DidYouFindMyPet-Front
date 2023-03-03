@@ -1,8 +1,10 @@
+import LoginForm from '../components/LoginForm';
+
 export default function Root() {
   return (
     <>
       <div>
-        <h1>React Router Contacts</h1>
+        <LoginForm />
       </div>
     </>
   );
