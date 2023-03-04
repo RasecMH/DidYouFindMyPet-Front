@@ -1,16 +1,30 @@
-import dogImg from '../assets/dog.jpg';
+interface petInfo {
+  id: number;
+  name: string;
+  description: string;
+  health: string;
+  qrCode: string;
+  image: string;
+}
 
-export default function PetCard() {
+export default function PetCard({
+  id,
+  name,
+  description,
+  health,
+  qrCode,
+  image,
+}: petInfo) {
   return (
     <div className='flex items-center justify-center'>
-      <div className='card w-96 h-96 bg-base-100 shadow-2xl'>
+      <div className='card w-80 h-80 bg-base-100 shadow-2xl'>
         <figure>
-          <img src={dogImg} alt='Shoes' />
+          <img src={image} alt='Shoes' />
         </figure>
         <div className='card-body items-center justify-center text-center'>
-          <h2 className='card-title'>Add Pet</h2>
+          <h2 className='card-title'>{name}</h2>
           <div className='card-actions'>
-            <label htmlFor='add-pet' className='btn btn-primary'>
+            <label htmlFor={`${name}-${id}`} className='btn btn-primary'>
               View
             </label>
           </div>
@@ -18,14 +32,13 @@ export default function PetCard() {
       </div>
 
       <div>
-        <input type='checkbox' id='add-pet' className='modal-toggle' />
-        <label htmlFor='add-pet' className='modal cursor-pointer'>
+        <input type='checkbox' id={`${name}-${id}`} className='modal-toggle' />
+        <label htmlFor={`${name}-${id}`} className='modal cursor-pointer'>
           <label className='modal-box relative' htmlFor=''>
-            <h3 className='text-lg font-bold'>Help Modal</h3>
-            <p className='py-4'>
-              You've been selected for a chance to get one year of subscription
-              to use Wikipedia for free!
-            </p>
+            <h3 className='text-lg font-bold'>{name}</h3>
+            <p className='py-4'>{description}</p>
+            <p className='py-4'>{health}</p>
+            <img src={qrCode} />
           </label>
         </label>
       </div>

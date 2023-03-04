@@ -4,7 +4,8 @@
     "name": "Whiskey",
     "description": "A cute guy",
     "health": "Alergic to oranges",
-    "qrCode": "Not generated",
+    "qrCode": "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://did-you-find-my-pet.vercel.app/pet/21",
+    "image": "https://img.freepik.com/fotos-gratis/cachorro-pequeno-sendo-adoravel-retrato-em-um-estudio_23-2149016947.jpg",
     "userId": 5
   },
   {
@@ -12,7 +13,8 @@
     "name": "Loki",
     "description": "A cute guy",
     "health": "Alergic to oranges",
-    "qrCode": "Not generated",
+    "qrCode": "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://did-you-find-my-pet.vercel.app/pet/21",
+    "image": "https://img.freepik.com/fotos-gratis/cachorro-pequeno-sendo-adoravel-retrato-em-um-estudio_23-2149016947.jpg",
     "userId": 5
   },
   {
@@ -20,7 +22,8 @@
     "name": "Dedeu",
     "description": "A cute guy",
     "health": "Alergic to oranges",
-    "qrCode": "Not generated",
+    "qrCode": "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://did-you-find-my-pet.vercel.app/pet/21",
+    "image": "https://img.freepik.com/fotos-gratis/cachorro-pequeno-sendo-adoravel-retrato-em-um-estudio_23-2149016947.jpg",
     "userId": 5
   },
   {
@@ -28,7 +31,17 @@
     "name": "Geraldinho",
     "description": "A cute guy",
     "health": "Alergic to oranges",
-    "qrCode": "Not generated",
+    "qrCode": "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://did-you-find-my-pet.vercel.app/pet/21",
+    "image": "https://img.freepik.com/fotos-gratis/cachorro-pequeno-sendo-adoravel-retrato-em-um-estudio_23-2149016947.jpg",
+    "userId": 5
+  },
+  {
+    "id": 5,
+    "name": "Ge",
+    "description": "A cute guy",
+    "health": "Alergic to oranges",
+    "qrCode": "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://did-you-find-my-pet.vercel.app/pet/21",
+    "image": "https://img.freepik.com/fotos-gratis/cachorro-pequeno-sendo-adoravel-retrato-em-um-estudio_23-2149016947.jpg",
     "userId": 5
   }
 ]
