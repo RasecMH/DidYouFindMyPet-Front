@@ -2,7 +2,7 @@ import houseIcon from '../assets/home.svg';
 
 export default function NavMenu() {
   return (
-    <div className='navbar bg-base-100 fixed top-0'>
+    <div className='navbar bg-base-100 fixed top-0 shadow-md'>
       <div className='flex-1'>
         <a className='btn btn-ghost normal-case text-xl ml-14'>
           DidYouFindMyPet

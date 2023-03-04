@@ -7,12 +7,12 @@ export default function Dashboard() {
     <div className='w-screen flex flex-col items-center justify-center'>
       <NavMenu />
 
-      <div className='flex items-start justify-center'>
-        <div className='w-1/4 flex items-center justify-center'>
+      <div className='flex items-start justify-start mt-16'>
+        <div className='w-1/4 flex items-start justify-center'>
           <HistoryContainer />
         </div>
         {/* <div className='divider divider-horizontal'></div> */}
-        <div className='w-3/4'>
+        <div className='w-3/4 flex items-center justify-between pr-4'>
           <PetsContainer />
         </div>
       </div>
