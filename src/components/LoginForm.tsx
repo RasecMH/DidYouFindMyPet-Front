@@ -12,8 +12,8 @@ export default function LoginForm() {
             <span className='label-text'>Email</span>
           </label>
           <input
-            type='text'
-            placeholder='Type here'
+            type='email'
+            placeholder='john@doe.com'
             className='input input-bordered w-full max-w-xs'
           />
         </div>
@@ -23,8 +23,8 @@ export default function LoginForm() {
             <span className='label-text'>Password</span>
           </label>
           <input
-            type='text'
-            placeholder='Type here'
+            type='password'
+            placeholder='*********'
             className='input input-bordered w-full max-w-xs'
           />
         </div>

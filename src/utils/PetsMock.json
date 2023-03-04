@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Whiskey",
+    "description": "A cute guy",
+    "health": "Alergic to oranges",
+    "qrCode": "Not generated",
+    "userId": 5
+  },
+  {
+    "id": 2,
+    "name": "Loki",
+    "description": "A cute guy",
+    "health": "Alergic to oranges",
+    "qrCode": "Not generated",
+    "userId": 5
+  },
+  {
+    "id": 3,
+    "name": "Dedeu",
+    "description": "A cute guy",
+    "health": "Alergic to oranges",
+    "qrCode": "Not generated",
+    "userId": 5
+  },
+  {
+    "id": 4,
+    "name": "Geraldinho",
+    "description": "A cute guy",
+    "health": "Alergic to oranges",
+    "qrCode": "Not generated",
+    "userId": 5
+  }
+]

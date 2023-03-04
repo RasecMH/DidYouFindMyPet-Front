@@ -2,7 +2,7 @@ import houseIcon from '../assets/home.svg';
 
 export default function NavMenu() {
   return (
-    <div className='navbar bg-base-100'>
+    <div className='navbar bg-base-100 fixed top-0'>
       <div className='flex-1'>
         <a className='btn btn-ghost normal-case text-xl ml-14'>
           DidYouFindMyPet
@@ -11,10 +11,10 @@ export default function NavMenu() {
       <div className='flex-none'>
         <ul className='menu menu-horizontal px-1'>
           <li>
-            <a>Help</a>
+            <label htmlFor='help-modal'>Help</label>
           </li>
           <li>
-            <a>Contact Us</a>
+            <label htmlFor='contact-modal'>Contact Us</label>
           </li>
           <li tabIndex={0}>
             <a>
@@ -41,6 +41,32 @@ export default function NavMenu() {
             <img src={houseIcon} />
           </li>
         </ul>
+      </div>
+
+      <div>
+        <input type='checkbox' id='contact-modal' className='modal-toggle' />
+        <label htmlFor='contact-modal' className='modal cursor-pointer'>
+          <label className='modal-box relative' htmlFor=''>
+            <h3 className='text-lg font-bold'>Contact Modal</h3>
+            <p className='py-4'>
+              You've been selected for a chance to get one year of subscription
+              to use Wikipedia for free!
+            </p>
+          </label>
+        </label>
+      </div>
+
+      <div>
+        <input type='checkbox' id='help-modal' className='modal-toggle' />
+        <label htmlFor='help-modal' className='modal cursor-pointer'>
+          <label className='modal-box relative' htmlFor=''>
+            <h3 className='text-lg font-bold'>Help Modal</h3>
+            <p className='py-4'>
+              You've been selected for a chance to get one year of subscription
+              to use Wikipedia for free!
+            </p>
+          </label>
+        </label>
       </div>
     </div>
   );
