@@ -1,12 +1,14 @@
-export default function formatPhone(phoneNumber: string): string {
-  const phoneRegex = /^(\+\d{1,3})?(\d{2,3})(\d{4,5})(\d{4})$/;
-  const matches = phoneNumber.match(phoneRegex);
+import { PhoneNumberUtil, PhoneNumberFormat } from 'google-libphonenumber';
 
-  if (!matches) {
+const phoneUtil = PhoneNumberUtil.getInstance();
+
+export default function formatPhone(phoneNumber: string): string {
+  try {
+    const parsedNumber = phoneUtil.parseAndKeepRawInput(phoneNumber);
+    const formattedNumber = phoneUtil.format(parsedNumber, PhoneNumberFormat.NATIONAL);
+    return formattedNumber;
+  } catch (error) {
+    console.error(error);
     return phoneNumber;
   }
-
-  const [, ddi, ddd, prefix, suffix] = matches;
-
-  return `${ddi ? ddi + ' ' : ''}(${ddd}) ${prefix}-${suffix}`;
 }

@@ -10,7 +10,7 @@ interface MapInfo {
 
 export default function Map({ center, petName }: MapInfo) {
   return (
-    <div className='h-80 w-full'>
+    <div className='h-80 w-full mt-4'>
       <MapContainer
         className='h-full w-full'
         center={[center.lat, center.lng]}
