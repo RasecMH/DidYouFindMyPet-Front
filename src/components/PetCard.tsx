@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
 interface petInfo {
   id: number;
   name: string;
@@ -15,6 +18,26 @@ export default function PetCard({
   qrCode,
   image,
 }: petInfo) {
+  const [qrCodeBlob, setQrCodeBlob] = useState<string>('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await axios
+        .get(qrCode, { responseType: 'blob' })
+        .then((response) => {
+          if (response.data) {
+            return window.URL.createObjectURL(
+              new File([response.data], name, { type: response.data.type })
+            );
+          }
+          return qrCode;
+        });
+      return setQrCodeBlob(data);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className='flex items-center justify-center'>
       <div className='card w-80 h-80 bg-base-100 shadow-2xl'>
@@ -39,6 +62,11 @@ export default function PetCard({
             <p className='py-4'>{description}</p>
             <p className='py-4'>{health}</p>
             <img src={qrCode} />
+            <a href={qrCodeBlob} download={name} target='_blank'>
+              <button type='button' className='btn'>
+                DOWNLOAD
+              </button>
+            </a>
           </label>
         </label>
       </div>
