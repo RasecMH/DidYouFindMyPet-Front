@@ -1,6 +1,7 @@
 import NavMenu from '../components/NavMenu';
 import PetsContainer from '../components/PetsContainer';
 import HistoryContainer from '../components/HistoryContainer';
+import CreatePetForm from '../components/CreatePetForm';
 
 export default function Dashboard() {
   return (
@@ -21,11 +22,7 @@ export default function Dashboard() {
         <input type='checkbox' id='add-pet' className='modal-toggle' />
         <label htmlFor='add-pet' className='modal cursor-pointer'>
           <label className='modal-box relative' htmlFor=''>
-            <h3 className='text-lg font-bold'>Add Pet</h3>
-            <p className='py-4'>
-              You've been selected for a chance to get one year of subscription
-              to use Wikipedia for free!
-            </p>
+            <CreatePetForm />
           </label>
         </label>
       </div>

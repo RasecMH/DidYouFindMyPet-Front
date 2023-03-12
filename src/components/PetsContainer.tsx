@@ -6,7 +6,7 @@ export default function PetsContainer() {
     <div>
       <h1 className='text-4xl'>Pets</h1>
       <div className='divider'></div>
-      <div className='flex gap-10 flex-wrap items-start justify-start mt-4'>
+      <div className='flex gap-8 flex-wrap items-start justify-start mt-4'>
         {PetsMock.map((pet) => (
           <PetCard
             key={pet.id}
