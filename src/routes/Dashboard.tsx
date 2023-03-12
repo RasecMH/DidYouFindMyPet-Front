@@ -5,7 +5,7 @@ import CreatePetForm from '../components/CreatePetForm';
 
 export default function Dashboard() {
   return (
-    <div className='w-screen flex flex-col items-center justify-center'>
+    <div className='w-screen h-screen flex flex-col items-center justify-center'>
       <NavMenu />
 
       <div className='flex items-start justify-start mt-16'>
