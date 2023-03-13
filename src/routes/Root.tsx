@@ -4,7 +4,11 @@ import loginImage from '../assets/login-image.svg';
 import bgImage from '../assets/background.svg';
 import NavMenu from '../components/NavMenu';
 
-export default function Root() {
+interface RootInt {
+  register?: boolean;
+}
+
+export default function Root({ register }: RootInt) {
   return (
     <div className='w-screen h-screen'>
       <NavMenu />
@@ -16,7 +20,7 @@ export default function Root() {
         items-center
         w-1/3 
         h-full'>
-          <LoginForm />
+          {register ? <RegisterForm /> : <LoginForm />}
         </div>
         <div
           className='w-2/3 

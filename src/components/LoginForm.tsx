@@ -20,7 +20,7 @@ export default function LoginForm() {
         <h1 className='text-4xl'>Welcome Back</h1>
         <span>
           Don't have a account,{' '}
-          <a className='link' href=''>
+          <a className='link' onClick={() => navigate('/register')}>
             Sign Up
           </a>
         </span>

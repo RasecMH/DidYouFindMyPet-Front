@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "city": "Fortaleza",
+    "state": "CE"
+  },
+  {
+    "id": 2,
+    "city": "Natal",
+    "state": "RN"
+  },
+  {
+    "id": 3,
+    "city": "Recife",
+    "state": "PE"
+  },
+  {
+    "id": 4,
+    "city": "São Paulo",
+    "state": "SP"
+  },
+  {
+    "id": 5,
+    "city": "Rio de Janeiro",
+    "state": "RJ"
+  },
+  {
+    "id": 6,
+    "city": "Curitíba",
+    "state": "PR"
+  }
+]

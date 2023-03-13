@@ -1,10 +1,24 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
+
 export default function RegisterForm() {
+  const navigate = useNavigate();
+  const [nameValue, setNameValue] = useState('');
+  const [emailValue, setEmailValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
+  const [cityValue, setCityValue] = useState('');
+  const [citiesAutoCompleteValue, setCitiesAutoCompleteValue] = useState('');
+  const [stateValue, setStateValue] = useState('');
+  const [addressValue, setAddressValue] = useState('');
   return (
     <>
       <div className='w-2/3'>
         <h1 className='text-4xl'>Create account</h1>
         <span>
-          Alreary have a account, <a href=''>Sign In</a>
+          Alreary have a account,{' '}
+          <a className='link' onClick={() => navigate('/')}>
+            Sign In
+          </a>
         </span>
 
         <div className='form-control w-full'>
@@ -15,6 +29,8 @@ export default function RegisterForm() {
             type='text'
             placeholder='John Doe'
             className='input input-bordered w-full'
+            value={nameValue}
+            onChange={(e) => setNameValue(e.target.value)}
           />
         </div>
 
@@ -26,6 +42,8 @@ export default function RegisterForm() {
             type='email'
             placeholder='John@doe.com'
             className='input input-bordered w-full'
+            value={emailValue}
+            onChange={(e) => setEmailValue(e.target.value)}
           />
         </div>
 
@@ -37,6 +55,8 @@ export default function RegisterForm() {
             type='password'
             placeholder='*********'
             className='input input-bordered w-full'
+            value={passwordValue}
+            onChange={(e) => setPasswordValue(e.target.value)}
           />
         </div>
 
@@ -49,6 +69,8 @@ export default function RegisterForm() {
               type='text'
               placeholder='New York'
               className='input input-bordered w-full'
+              value={cityValue}
+              onChange={(e) => setCityValue(e.target.value)}
             />
           </div>
 
@@ -60,6 +82,8 @@ export default function RegisterForm() {
               type='text'
               placeholder='NY'
               className='input input-bordered w-full'
+              value={stateValue}
+              onChange={(e) => setStateValue(e.target.value)}
             />
           </div>
         </div>
@@ -72,6 +96,8 @@ export default function RegisterForm() {
             type='text'
             placeholder='Street 123'
             className='input input-bordered w-full'
+            value={addressValue}
+            onChange={(e) => setAddressValue(e.target.value)}
           />
         </div>
 
