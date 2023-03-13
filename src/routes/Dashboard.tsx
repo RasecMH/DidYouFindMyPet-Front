@@ -2,8 +2,14 @@ import NavMenu from '../components/NavMenu';
 import PetsContainer from '../components/PetsContainer';
 import HistoryContainer from '../components/HistoryContainer';
 import CreatePetForm from '../components/CreatePetForm';
+import useCookies from 'react-cookie/cjs/useCookies';
+import { useEffect } from 'react';
 
 export default function Dashboard() {
+  const [cookies, setCookie, removeCookie] = useCookies();
+
+  useEffect(() => {}, []);
+
   return (
     <div className='w-screen h-screen flex flex-col items-center justify-center'>
       <NavMenu />

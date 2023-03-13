@@ -1,6 +1,16 @@
-import houseIcon from '../assets/home.svg';
+import { useEffect } from 'react';
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router';
 
 export default function NavMenu() {
+  const [cookies, setCookie, removeCookie] = useCookies();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    removeCookie('token');
+    navigate('/');
+  };
+
   return (
     <div className='navbar bg-base-100 fixed top-0 shadow-md'>
       <div className='flex-1'>
@@ -17,7 +27,11 @@ export default function NavMenu() {
             <label htmlFor='contact-modal'>Contact</label>
           </li>
           <li>
-            <a>Sign Up</a>
+            {cookies.token ? (
+              <a onClick={handleLogout}>Logout</a>
+            ) : (
+              <a>Sign Up</a>
+            )}
           </li>
         </ul>
       </div>
@@ -44,27 +58,26 @@ export default function NavMenu() {
               The purpose of the project is to allow users to register
               information about an animal, and generate a QR code that can be
               scanned to generate a history of the animal's location.
-              <p className='py-4'>
-                The application has a simple and intuitive user interface built
-                using React, which allows users to easily register and manage
-                animal information. The backend of the application is built
-                using Node.js and TypeScript, and stores the animal data in a
-                database.
-              </p>
-              <p className='py-4'>
-                Once an animal has been registered, the application generates a
-                unique QR code for that animal. This QR code can be printed and
-                contains a link to a web page that displays the animal's
-                information and share the location with user, the person who
-                scanned the QR code also can send a message and contact info.
-              </p>
-              <p className='py-4'>
-                Overall, my this project provides a useful tool for animal
-                owners, caretakers, and researchers who need to keep track of an
-                animal's location history. The use of TypeScript, React, and
-                Node.js ensures that the application is reliable, efficient, and
-                easy to maintain.
-              </p>
+            </p>
+            <p className='py-4'>
+              The application has a simple and intuitive user interface built
+              using React, which allows users to easily register and manage
+              animal information. The backend of the application is built using
+              Node.js and TypeScript, and stores the animal data in a database.
+            </p>
+            <p className='py-4'>
+              Once an animal has been registered, the application generates a
+              unique QR code for that animal. This QR code can be printed and
+              contains a link to a web page that displays the animal's
+              information and share the location with user, the person who
+              scanned the QR code also can send a message and contact info.
+            </p>
+            <p className='py-4'>
+              Overall, my this project provides a useful tool for animal owners,
+              caretakers, and researchers who need to keep track of an animal's
+              location history. The use of TypeScript, React, and Node.js
+              ensures that the application is reliable, efficient, and easy to
+              maintain.
             </p>
           </label>
         </label>
