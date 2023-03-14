@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from 'react';
+import { FormEvent, SetStateAction, useState } from 'react';
 import { useNavigate } from 'react-router';
 import CitiesFile from '../utils/Cities.json';
 
@@ -25,20 +25,25 @@ export default function RegisterForm() {
     setCityValue(value[0]);
     setStateValue(value[1]);
     if (!cityValue) return;
-    console.log(citiesAutoCompleteValue);
-    if (!citiesAutoCompleteValue.includes(value)) {
-      const res = fetchCities(e.target.value);
+    const res = fetchCities(e.target.value);
+    if (!citiesAutoCompleteValue.includes(value[0])) {
       setCitiesAutoCompleteValue(res);
     }
   };
 
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    console.log(citiesAutoCompleteValue);
+  };
+
   const fetchCities = (query: string) => {
+    console.log(citiesAutoCompleteValue);
     return CitiesFile.filter((city) => city.city.includes(query));
   };
 
   return (
     <>
-      <div className='w-2/3'>
+      <form onSubmit={handleSubmit} className='w-2/3'>
         <h1 className='text-4xl'>Create account</h1>
         <span>
           Alreary have a account,{' '}
@@ -97,7 +102,11 @@ export default function RegisterForm() {
               placeholder='New York'
               className='input input-bordered w-full'
               value={cityValue}
-              // pattern={citiesAutoCompleteValue.join('|')}
+              pattern={
+                citiesAutoCompleteValue.map((city) => city.city).join('|') ||
+                cityValue
+              }
+              autoComplete='off'
               onChange={handleCityChange}
             />
             <datalist id='places'>
@@ -115,7 +124,9 @@ export default function RegisterForm() {
               type='text'
               placeholder='NY'
               className='input input-bordered w-full'
-              value={stateValue}
+              defaultValue={stateValue}
+              disabled
+
               // onChange={(e) => setStateValue(e.target.value)}
             />
           </div>
@@ -134,8 +145,10 @@ export default function RegisterForm() {
           />
         </div>
 
-        <button className='btn w-full mt-3'>Sign Up</button>
-      </div>
+        <button className='btn w-full mt-3' type='submit'>
+          Sign Up
+        </button>
+      </form>
     </>
   );
 }
