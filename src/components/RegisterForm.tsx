@@ -1,15 +1,41 @@
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import { useNavigate } from 'react-router';
+import CitiesFile from '../utils/Cities.json';
+
+interface citiesInt {
+  id: number;
+  city: string;
+  state: string;
+}
 
 export default function RegisterForm() {
+  const initialArrayState: citiesInt[] = [];
   const navigate = useNavigate();
   const [nameValue, setNameValue] = useState('');
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [cityValue, setCityValue] = useState('');
-  const [citiesAutoCompleteValue, setCitiesAutoCompleteValue] = useState('');
+  const [citiesAutoCompleteValue, setCitiesAutoCompleteValue] =
+    useState(initialArrayState);
   const [stateValue, setStateValue] = useState('');
   const [addressValue, setAddressValue] = useState('');
+
+  const handleCityChange = async (e: any) => {
+    const value = e.target.value.split(', ');
+    setCityValue(value[0]);
+    setStateValue(value[1]);
+    if (!cityValue) return;
+    console.log(citiesAutoCompleteValue);
+    if (!citiesAutoCompleteValue.includes(value)) {
+      const res = fetchCities(e.target.value);
+      setCitiesAutoCompleteValue(res);
+    }
+  };
+
+  const fetchCities = (query: string) => {
+    return CitiesFile.filter((city) => city.city.includes(query));
+  };
+
   return (
     <>
       <div className='w-2/3'>
@@ -67,11 +93,18 @@ export default function RegisterForm() {
             </label>
             <input
               type='text'
+              list='places'
               placeholder='New York'
               className='input input-bordered w-full'
               value={cityValue}
-              onChange={(e) => setCityValue(e.target.value)}
+              // pattern={citiesAutoCompleteValue.join('|')}
+              onChange={handleCityChange}
             />
+            <datalist id='places'>
+              {citiesAutoCompleteValue.map((city, i) => (
+                <option key={i}>{`${city.city}, ${city.state}`}</option>
+              ))}
+            </datalist>
           </div>
 
           <div className='form-control w-1/3'>
@@ -83,7 +116,7 @@ export default function RegisterForm() {
               placeholder='NY'
               className='input input-bordered w-full'
               value={stateValue}
-              onChange={(e) => setStateValue(e.target.value)}
+              // onChange={(e) => setStateValue(e.target.value)}
             />
           </div>
         </div>
