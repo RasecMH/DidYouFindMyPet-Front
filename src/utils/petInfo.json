@@ -1,0 +1,17 @@
+{
+  "id": 1,
+  "name": "Whiskey",
+  "description": "A cute guy",
+  "health": "Alergic to oranges",
+  "qrCode": "Not generated",
+  "userId": 5,
+  "user": {
+    "id": 5,
+    "name": "John Doe",
+    "email": "john@doe.com",
+    "phone": "+5585999999999",
+    "address": "Baker Street 5",
+    "city": "Fortaleza",
+    "state": "CE"
+  }
+}

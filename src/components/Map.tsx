@@ -1,4 +1,5 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import FlyMapTo from './FlyToMap';
 
 interface MapInfo {
   center: {
@@ -9,6 +10,8 @@ interface MapInfo {
 }
 
 export default function Map({ center, petName }: MapInfo) {
+  console.log('att');
+
   return (
     <div className='h-80 w-full mt-4'>
       <MapContainer
@@ -20,6 +23,7 @@ export default function Map({ center, petName }: MapInfo) {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         />
+        <FlyMapTo center={center} />
         <Marker position={[center.lat, center.lng]}>
           <Popup>{petName} was here!</Popup>
         </Marker>

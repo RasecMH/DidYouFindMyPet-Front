@@ -5,6 +5,7 @@ import Root from './routes/Root';
 import ErrorPage from './routes/ErrorPage';
 import './index.css';
 import Dashboard from './routes/Dashboard';
+import Pet from './routes/Pet';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,11 @@ const router = createBrowserRouter([
   {
     path: '/dashboard',
     element: <Dashboard />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/pet/:id',
+    element: <Pet />,
     errorElement: <ErrorPage />,
   },
 ]);
