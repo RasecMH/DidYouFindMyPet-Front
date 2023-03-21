@@ -41,7 +41,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className='w-screen h-screen flex flex-col items-center justify-center'>
+    <div className='w-screen h-screen'>
       <NavMenu />
 
       <div className='flex items-start justify-start mt-16 w-full h-full'>

@@ -3,7 +3,7 @@ interface HistoryInfo {
   petName: string;
   city: string;
   createdDate: string;
-  locationLink: string;
+  location: string;
   address: string;
   contact: {
     id: number;
@@ -17,16 +17,20 @@ export default function HistoryCard({
   petName,
   city,
   createdDate,
-  locationLink,
+  location,
   address,
   contact,
 }: HistoryInfo) {
+  const myDate = new Date(createdDate);
   return (
     <li>
-      <label htmlFor={`${petName}-${id}`} className='flex justify-between'>
+      <label
+        htmlFor={`${petName}-${id}-${createdDate}`}
+        className='flex justify-between'>
         {petName}{' '}
         <span>
-          {city} - {createdDate}
+          {city} -{' '}
+          {`${myDate.getDate()}/${myDate.getMonth()}/${myDate.getFullYear()}`}
         </span>
       </label>
     </li>

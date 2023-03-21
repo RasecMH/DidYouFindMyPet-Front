@@ -8,7 +8,6 @@ export default function formatPhone(phoneNumber: string): string {
     const formattedNumber = phoneUtil.format(parsedNumber, PhoneNumberFormat.NATIONAL);
     return formattedNumber;
   } catch (error) {
-    console.error(error);
     return phoneNumber;
   }
 }

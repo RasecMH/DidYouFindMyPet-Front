@@ -2,13 +2,44 @@ import HistoryMock from '../utils/HistoryMock.json';
 import HistoryCard from './HistoryCard';
 import HistoryModal from './HistoryModal';
 
+interface ICity {
+  id: number;
+  name: string;
+  stateId: number;
+  state: IState;
+}
+
+interface IState {
+  id: number;
+  name: string;
+  countryId: number;
+  country: ICountry;
+}
+
+interface ICountry {
+  id: number;
+  name: string;
+  phone: number;
+  code: string;
+}
+
+interface petInfo {
+  id: number;
+  name: string;
+  description: string;
+  health: string;
+  image: string;
+}
+
 interface HistoryInfo {
   id: number;
   petId: string;
   cityId: number;
+  city: ICity;
   createdDate: string;
   location: string;
   address: string;
+  pet: petInfo;
   contact: {
     id: number;
     message: string;
@@ -34,9 +65,9 @@ export default function HistoryContainer({ historyData }: Props) {
             historyData.map((history) => (
               <HistoryCard
                 id={history.id}
-                city={history.cityId}
+                city={history.city.name}
                 address={history.address}
-                petName={history.petId}
+                petName={history.pet.name}
                 createdDate={history.createdDate}
                 location={history.location}
                 contact={history.contact}
@@ -51,9 +82,9 @@ export default function HistoryContainer({ historyData }: Props) {
       {historyData.map((history) => (
         <HistoryModal
           id={history.id}
-          city={history.cityId}
+          city={history.city.name}
           address={history.address}
-          petName={history.petId}
+          petName={history.pet.name}
           createdDate={history.createdDate}
           location={history.location}
           contact={history.contact}

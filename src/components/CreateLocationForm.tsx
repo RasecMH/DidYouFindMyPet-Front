@@ -57,6 +57,12 @@ export default function CreateLocationForm() {
     user: {
       address: '',
       cityId: 0,
+      city: {
+        name: '',
+        state: {
+          name: '',
+        },
+      },
       code: '',
       email: '',
       id: 0,
@@ -169,153 +175,152 @@ export default function CreateLocationForm() {
   const center = { lat: locationValue.lat, lng: locationValue.lng };
   return (
     <>
-      <form onSubmit={handleSubmit} className='w-2/3'>
-        <h1 className='text-3xl font-bold mb-5'>{petDataValue.name}</h1>
-        <h1 className='text-lg font-bold'>Description:</h1>
-        <p className='py-2'>{petDataValue.description}</p>
-        <h1 className='text-lg font-bold'>Health:</h1>
-        <p className='py-2'>{petDataValue.health}</p>
-        <h1 className='text-lg font-bold'>Address:</h1>
-        <p className='py-2'>
-          {petDataValue.user.address} - {petDataValue.user.city},{' '}
-          {petDataValue.user.state}
-        </p>
-        <h1 className='text-lg font-bold'>Contact:</h1>
-        <a href={`tel:${petDataValue.user.phone}`} className='py-2'>
-          {formatPhone(petDataValue.user.phone)}
-        </a>
-        <div className='flex flex-col justify-center items-center'>
-          <Map center={center} petName={petDataValue.name} />
-          <button
-            onClick={getLocation}
-            type='button'
-            className='btn w-1/3 mt-3'>
-            Send Location
-          </button>
-        </div>
-
-        <div className='form-control w-full'>
-          <label className='label'>
-            <span className='label-text'>City</span>
-          </label>
-          <input
-            type='text'
-            list='places'
-            required
-            placeholder='New York'
-            className='input input-bordered w-full'
-            value={cityValue}
-            pattern={patternValue}
-            autoComplete='off'
-            onChange={handleCityChange}
-          />
-          <datalist id='places'>
-            {citiesAutoCompleteValue.map((city, i) => (
-              <option
-                key={
-                  i
-                }>{`${city.name}, ${city.state.name}, ${city.state.country.name}`}</option>
-            ))}
-          </datalist>
-        </div>
-
-        <div className='form-control w-full'>
-          <label className='label'>
-            <span className='label-text'>Address</span>
-          </label>
-          <input
-            type='text'
-            placeholder='Street 123'
-            className='input input-bordered w-full'
-            value={addressValue}
-            onChange={(e) => setAddressValue(e.target.value)}
-          />
-        </div>
-
-        <div className='flex gap-2'>
-          <div className='form-control w-20'>
-            <label className='label'>
-              <span className='label-text'>Code</span>
-            </label>
-            <input
-              type='tel'
-              maxLength={3}
-              placeholder='+***'
-              className='input input-bordered w-full'
-              value={countryCodeValue}
-              onChange={(e) => setCountryCodeValue(e.target.value)}
-            />
+      {submitSuccessValue.length > 0 ? (
+        <div className='alert alert-sucess shadow-lg'>
+          <div>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              className='stroke-current flex-shrink-0 h-6 w-6'
+              fill='none'
+              viewBox='0 0 24 24'>
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth='2'
+                d='M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z'
+              />
+            </svg>
+            <span>{submitSuccessValue}</span>
           </div>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className='w-2/3'>
+          <h1 className='text-3xl font-bold mb-5'>{petDataValue.name}</h1>
+          <h1 className='text-lg font-bold'>Description:</h1>
+          <p className='py-2'>{petDataValue.description}</p>
+          <h1 className='text-lg font-bold'>Health:</h1>
+          <p className='py-2'>{petDataValue.health}</p>
+          <h1 className='text-lg font-bold'>Address:</h1>
+          <p className='py-2'>
+            {petDataValue.user.address} - {petDataValue.user.city.name},{' '}
+            {petDataValue.user.city.state.name}
+          </p>
+          <h1 className='text-lg font-bold'>Contact:</h1>
+          <a href={`tel:${petDataValue.user.phone}`} className='py-2'>
+            {formatPhone(petDataValue.user.phone)}
+          </a>
+          <div className='flex flex-col justify-center items-center'>
+            <Map center={center} petName={petDataValue.name} />
+            <button
+              onClick={getLocation}
+              type='button'
+              className='btn w-1/3 mt-3'>
+              Send Location
+            </button>
+          </div>
+
           <div className='form-control w-full'>
             <label className='label'>
-              <span className='label-text'>Phone</span>
+              <span className='label-text'>City</span>
             </label>
             <input
-              type='tel'
-              placeholder='(**) ****-****'
+              type='text'
+              list='places'
+              required
+              placeholder='New York'
               className='input input-bordered w-full'
-              value={phoneValue}
-              onChange={(e) =>
-                setPhoneValue(formatPhoneToState(e.target.value))
-              }
+              value={cityValue}
+              pattern={patternValue}
+              autoComplete='off'
+              onChange={handleCityChange}
+            />
+            <datalist id='places'>
+              {citiesAutoCompleteValue.map((city, i) => (
+                <option
+                  key={
+                    i
+                  }>{`${city.name}, ${city.state.name}, ${city.state.country.name}`}</option>
+              ))}
+            </datalist>
+          </div>
+
+          <div className='form-control w-full'>
+            <label className='label'>
+              <span className='label-text'>Address</span>
+            </label>
+            <input
+              type='text'
+              placeholder='Street 123'
+              className='input input-bordered w-full'
+              value={addressValue}
+              onChange={(e) => setAddressValue(e.target.value)}
             />
           </div>
-        </div>
 
-        <div className='form-control w-full mb-2'>
-          <label className='label'>
-            <span className='label-text'>Message</span>
-          </label>
-          <textarea
-            rows={50}
-            className='input input-bordered w-full h-32'
-            value={messageValue}
-            onChange={(e) => setMessageValue(e.target.value)}
-          />
-        </div>
-
-        <button className='btn w-full my-3' type='submit'>
-          {isLoading ? <ReactLoading type='bubbles' color='#fff' /> : 'Send'}
-        </button>
-        {submitErrorValue.length > 0 && (
-          <div className='alert alert-error shadow-lg'>
-            <div>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='stroke-current flex-shrink-0 h-6 w-6'
-                fill='none'
-                viewBox='0 0 24 24'>
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth='2'
-                  d='M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z'
-                />
-              </svg>
-              <span>{submitErrorValue}</span>
+          <div className='flex gap-2'>
+            <div className='form-control w-20'>
+              <label className='label'>
+                <span className='label-text'>Code</span>
+              </label>
+              <input
+                type='tel'
+                maxLength={3}
+                placeholder='+***'
+                className='input input-bordered w-full'
+                value={countryCodeValue}
+                onChange={(e) => setCountryCodeValue(e.target.value)}
+              />
+            </div>
+            <div className='form-control w-full'>
+              <label className='label'>
+                <span className='label-text'>Phone</span>
+              </label>
+              <input
+                type='tel'
+                placeholder='(**) ****-****'
+                className='input input-bordered w-full'
+                value={formatPhoneToState(phoneValue)}
+                onChange={(e) => setPhoneValue(e.target.value)}
+              />
             </div>
           </div>
-        )}
-        {submitSuccessValue.length > 0 && (
-          <div className='alert alert-sucess shadow-lg'>
-            <div>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='stroke-current flex-shrink-0 h-6 w-6'
-                fill='none'
-                viewBox='0 0 24 24'>
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth='2'
-                  d='M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z'
-                />
-              </svg>
-              <span>{submitSuccessValue}</span>
-            </div>
+
+          <div className='form-control w-full mb-2'>
+            <label className='label'>
+              <span className='label-text'>Message</span>
+            </label>
+            <textarea
+              rows={50}
+              className='input input-bordered w-full h-32'
+              value={messageValue}
+              onChange={(e) => setMessageValue(e.target.value)}
+            />
           </div>
-        )}
-      </form>
+
+          <button className='btn w-full my-3' type='submit'>
+            {isLoading ? <ReactLoading type='bubbles' color='#fff' /> : 'Send'}
+          </button>
+          {submitErrorValue.length > 0 && (
+            <div className='alert alert-error shadow-lg'>
+              <div>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  className='stroke-current flex-shrink-0 h-6 w-6'
+                  fill='none'
+                  viewBox='0 0 24 24'>
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth='2'
+                    d='M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z'
+                  />
+                </svg>
+                <span>{submitErrorValue}</span>
+              </div>
+            </div>
+          )}
+        </form>
+      )}
     </>
   );
 }
