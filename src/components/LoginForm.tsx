@@ -1,22 +1,52 @@
-import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { FormEvent, useState } from 'react';
 import useCookies from 'react-cookie/cjs/useCookies';
 import { useNavigate } from 'react-router';
+import ReactLoading from 'react-loading';
+import { useSessionStorage } from 'usehooks-ts';
 
 export default function LoginForm() {
   const [cookies, setCookie, removeCookie] = useCookies();
+  const [sessionValue, setSessionValue] = useSessionStorage('token', '');
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [rememberCheck, setRememberCheck] = useState(false);
+  const [submitErrorValue, setSubmitErrorValue] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    setCookie('token', '123456');
-    navigate('/dashboard');
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setSubmitErrorValue('');
+
+    const payload = {
+      email: emailValue,
+      password: passwordValue,
+    };
+    try {
+      const res = await axios.post(
+        'https://did-you-find-my-pet.vercel.app/user/login',
+        payload
+      );
+      console.log(res);
+      if (rememberCheck) {
+        setCookie('token', res.data.token);
+      } else {
+        setSessionValue(res.data.token);
+      }
+      setIsLoading(false);
+      navigate('/dashboard');
+    } catch (error: any) {
+      setIsLoading(false);
+      setSubmitErrorValue(error.response.data.message);
+      console.log(error.response.data.message);
+    }
   };
 
   return (
     <>
-      <div className='w-1/2'>
+      <form onSubmit={handleSubmit} className='w-1/2'>
         <h1 className='text-4xl'>Welcome Back</h1>
         <span>
           Don't have a account,{' '}
@@ -31,6 +61,7 @@ export default function LoginForm() {
           </label>
           <input
             type='email'
+            required
             placeholder='john@doe.com'
             className='input input-bordered w-full max-w-xs'
             value={emailValue}
@@ -44,6 +75,7 @@ export default function LoginForm() {
           </label>
           <input
             type='password'
+            required
             placeholder='*********'
             className='input input-bordered w-full max-w-xs'
             value={passwordValue}
@@ -65,10 +97,29 @@ export default function LoginForm() {
           </div>
           <a href=''>Forget password?</a>
         </div>
-        <button onClick={handleLogin} className='btn w-full mt-3'>
-          Sign In
+        <button className='btn w-full my-3' type='submit'>
+          {isLoading ? <ReactLoading type='bubbles' color='#fff' /> : 'Sign In'}
         </button>
-      </div>
+        {submitErrorValue.length > 0 && (
+          <div className='alert alert-error shadow-lg'>
+            <div>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='stroke-current flex-shrink-0 h-6 w-6'
+                fill='none'
+                viewBox='0 0 24 24'>
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth='2'
+                  d='M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z'
+                />
+              </svg>
+              <span>{submitErrorValue}</span>
+            </div>
+          </div>
+        )}
+      </form>
     </>
   );
 }

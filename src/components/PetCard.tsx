@@ -6,7 +6,6 @@ interface petInfo {
   name: string;
   description: string;
   health: string;
-  qrCode: string;
   image: string;
 }
 
@@ -15,22 +14,25 @@ export default function PetCard({
   name,
   description,
   health,
-  qrCode,
   image,
 }: petInfo) {
   const [qrCodeBlob, setQrCodeBlob] = useState<string>('');
+  const qrCodeLink =
+    'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=';
+  const urlPath = 'http://localhost:5173/pet/';
+  const qrCodeWithUrl = `${qrCodeLink}${urlPath}${id}`;
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await axios
-        .get(qrCode, { responseType: 'blob' })
+        .get(qrCodeWithUrl, { responseType: 'blob' })
         .then((response) => {
           if (response.data) {
             return window.URL.createObjectURL(
               new File([response.data], name, { type: response.data.type })
             );
           }
-          return qrCode;
+          return qrCodeWithUrl;
         });
       return setQrCodeBlob(data);
     };
@@ -64,7 +66,7 @@ export default function PetCard({
             <h1 className='text-lg font-bold'>Health:</h1>
             <p className='py-2'>{health}</p>
             <div className='flex flex-col gap-6 mt-5 justify-center items-center'>
-              <img src={qrCode} />
+              <img src={qrCodeWithUrl} />
               <a href={qrCodeBlob} download={name} target='_blank'>
                 <button type='button' className='btn'>
                   DOWNLOAD

@@ -1,20 +1,32 @@
 import PetCard from '../components/PetCard';
 import PetsMock from '../utils/PetsMock.json';
 
-export default function PetsContainer() {
+interface petsInfo {
+  id: number;
+  name: string;
+  city: string;
+  description: string;
+  health: string;
+  image: string;
+}
+
+interface Props {
+  petsData: petsInfo[] | [];
+}
+
+export default function PetsContainer({ petsData }: Props) {
   return (
-    <div>
+    <div className='w-full'>
       <h1 className='text-4xl'>Pets</h1>
-      <div className='divider'></div>
+      <div className='divider w-full'></div>
       <div className='flex gap-8 flex-wrap items-start justify-start mt-4'>
-        {PetsMock.map((pet) => (
+        {petsData.map((pet) => (
           <PetCard
             key={pet.id}
             id={pet.id}
             name={pet.name}
             description={pet.description}
             health={pet.health}
-            qrCode={pet.qrCode}
             image={pet.image}
           />
         ))}

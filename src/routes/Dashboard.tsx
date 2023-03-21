@@ -3,24 +3,54 @@ import PetsContainer from '../components/PetsContainer';
 import HistoryContainer from '../components/HistoryContainer';
 import CreatePetForm from '../components/CreatePetForm';
 import useCookies from 'react-cookie/cjs/useCookies';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useSessionStorage } from 'usehooks-ts';
+import axios from 'axios';
 
 export default function Dashboard() {
+  const [sessionValue, setSessionValue] = useSessionStorage('token', '');
+  const [userDataValue, setUserDataValue] = useState<any>({
+    user: {},
+    pets: [],
+    locationHistory: [],
+  });
   const [cookies, setCookie, removeCookie] = useCookies();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  const fetchUser = async () => {
+    try {
+      const auth = cookies.token || sessionValue;
+
+      const res = await axios.get(
+        'https://did-you-find-my-pet.vercel.app/user/',
+        {
+          headers: {
+            Authorization: auth,
+          },
+        }
+      );
+      console.log(res.data);
+
+      setUserDataValue(res.data);
+    } catch (error: any) {
+      console.log(error.response.data.message);
+    }
+  };
 
   return (
     <div className='w-screen h-screen flex flex-col items-center justify-center'>
       <NavMenu />
 
-      <div className='flex items-start justify-start mt-16'>
+      <div className='flex items-start justify-start mt-16 w-full h-full'>
         <div className='w-1/4 flex items-start justify-center'>
-          <HistoryContainer />
+          <HistoryContainer historyData={userDataValue.locationHistory} />
         </div>
         {/* <div className='divider divider-horizontal'></div> */}
         <div className='w-3/4 flex items-center justify-between pr-4'>
-          <PetsContainer />
+          <PetsContainer petsData={userDataValue.pets} />
         </div>
       </div>
 
