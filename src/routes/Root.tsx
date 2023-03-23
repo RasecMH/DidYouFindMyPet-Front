@@ -10,27 +10,32 @@ interface RootInt {
 
 export default function Root({ register }: RootInt) {
   return (
-    <div className='w-screen h-screen'>
+    <div className='w-screen h-screen  flex flex-col items-center justify-center'>
       <NavMenu />
-      <div className='flex items-center justify-center w-full h-full'>
+      <div className='lg:flex items-center justify-center w-full h-full'>
         <div
           className='
         flex
         justify-center
         items-center
-        w-1/3 
+        lg:w-1/3
+        w-screen
         h-full'>
           {register ? <RegisterForm /> : <LoginForm />}
         </div>
         <div
-          className='w-2/3 
-        bg-cover
-        bg-center 
-        h-full 
-        flex 
-        items-center 
-        justify-center
-        bg-[url("https://source.unsplash.com/random/?pet/")]'>
+          className='
+        hidden
+        w-0
+        lg:visible
+        lg:w-2/3 
+        lg:bg-cover
+        lg:bg-center 
+        lg:h-full 
+        lg:flex 
+        lg:items-center 
+        lg:justify-center
+        lg:bg-[url("https://source.unsplash.com/random/?pet/")]'>
           {/* <img className='w-2/3' src={loginImage} /> */}
         </div>
       </div>

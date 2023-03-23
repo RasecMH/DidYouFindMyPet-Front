@@ -44,12 +44,11 @@ export default function Dashboard() {
     <div className='w-screen h-screen'>
       <NavMenu />
 
-      <div className='flex items-start justify-start mt-16 w-full h-full'>
-        <div className='w-1/4 flex items-start justify-center'>
+      <div className='flex flex-col items-center justify-start mt-16 w-full h-full gap-6'>
+        <div className='w-full px-6 flex items-center justify-between'>
           <HistoryContainer historyData={userDataValue.locationHistory} />
         </div>
-        {/* <div className='divider divider-horizontal'></div> */}
-        <div className='w-3/4 flex items-center justify-between pr-4'>
+        <div className='w-full px-6 flex items-center justify-between lg:pr-4'>
           <PetsContainer petsData={userDataValue.pets} />
         </div>
       </div>

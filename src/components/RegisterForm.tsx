@@ -116,7 +116,7 @@ export default function RegisterForm() {
       <form onSubmit={handleSubmit} className='w-2/3'>
         <h1 className='text-4xl'>Create account</h1>
         <span>
-          Alreary have a account,{' '}
+          Already have a account,{' '}
           <a className='link' onClick={() => navigate('/')}>
             Sign In
           </a>

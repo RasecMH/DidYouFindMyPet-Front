@@ -56,9 +56,9 @@ export default function HistoryContainer({ historyData }: Props) {
   console.log(historyData);
 
   return (
-    <div className='w-2/3'>
+    <div className='w-full'>
       <h1 className='text-4xl'>History</h1>
-      <div className='divider'></div>
+      <div className='divider w-full'></div>
       {historyData.length ? (
         <ul className='menu bg-base-100 w-full rounded-box shadow-2xl mt-4'>
           {historyData.length &&

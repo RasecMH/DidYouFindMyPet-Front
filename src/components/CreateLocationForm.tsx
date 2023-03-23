@@ -194,7 +194,7 @@ export default function CreateLocationForm() {
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className='w-2/3'>
+        <form onSubmit={handleSubmit} className='lg:w-2/3 w-full'>
           <h1 className='text-3xl font-bold mb-5'>{petDataValue.name}</h1>
           <h1 className='text-lg font-bold'>Description:</h1>
           <p className='py-2'>{petDataValue.description}</p>
@@ -209,12 +209,12 @@ export default function CreateLocationForm() {
           <a href={`tel:${petDataValue.user.phone}`} className='py-2'>
             {formatPhone(petDataValue.user.phone)}
           </a>
-          <div className='flex flex-col justify-center items-center'>
+          <div className='flex flex-col justify-center items-center -z-10'>
             <Map center={center} petName={petDataValue.name} />
             <button
               onClick={getLocation}
               type='button'
-              className='btn w-1/3 mt-3'>
+              className='btn lg:w-1/3 mt-3'>
               Send Location
             </button>
           </div>

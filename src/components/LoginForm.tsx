@@ -4,6 +4,7 @@ import useCookies from 'react-cookie/cjs/useCookies';
 import { useNavigate } from 'react-router';
 import ReactLoading from 'react-loading';
 import { useSessionStorage } from 'usehooks-ts';
+import UnderConstructionModal from './UnderConstructionModal';
 
 export default function LoginForm() {
   const [cookies, setCookie, removeCookie] = useCookies();
@@ -46,7 +47,7 @@ export default function LoginForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className='w-1/2'>
+      <form onSubmit={handleSubmit} className='lg:w-1/2'>
         <h1 className='text-4xl'>Welcome Back</h1>
         <span>
           Don't have a account,{' '}
@@ -83,7 +84,7 @@ export default function LoginForm() {
           />
         </div>
 
-        <div className='flex items-center justify-between mt-3'>
+        <div className='flex flex-col gap-3 items-start justify-between mt-3'>
           <div className='form-control'>
             <label className='label cursor-pointer'>
               <input
@@ -95,7 +96,11 @@ export default function LoginForm() {
               <span className='label-text'>Remember me</span>
             </label>
           </div>
-          <a href=''>Forget password?</a>
+          <label
+            className='text-xs self-center'
+            htmlFor='under-construction-modal'>
+            Forget password?
+          </label>
         </div>
         <button className='btn w-full my-3' type='submit'>
           {isLoading ? <ReactLoading type='bubbles' color='#fff' /> : 'Sign In'}
@@ -120,6 +125,8 @@ export default function LoginForm() {
           </div>
         )}
       </form>
+
+      <UnderConstructionModal />
     </>
   );
 }

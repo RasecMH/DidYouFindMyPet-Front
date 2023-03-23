@@ -11,11 +11,11 @@ export default function Pet() {
   useEffect(() => {}, []);
 
   return (
-    <div className='w-full h-full flex flex-col items-center gap-32'>
-      <div className='h-1/3 w-full'>
+    <div className='w-full h-full flex flex-col items-center lg:gap-32'>
+      <div className='lg:h-1/3 w-full'>
         <NavMenu />
       </div>
-      <div className='w-2/3 flex justify-center pb-32'>
+      <div className='lg:w-2/3 flex justify-center mt-16 pb-32'>
         <CreateLocationForm />
       </div>
     </div>
