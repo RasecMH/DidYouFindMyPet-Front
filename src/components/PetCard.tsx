@@ -42,7 +42,7 @@ export default function PetCard({
 
   return (
     <div className='flex items-center justify-center'>
-      <div className='card w-80 h-80 bg-base-100 shadow-2xl'>
+      <div className='card w-72 h-72 bg-base-100 shadow-2xl'>
         <figure>
           <img src={image} alt='Shoes' />
         </figure>

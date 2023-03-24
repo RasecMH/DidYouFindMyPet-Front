@@ -56,16 +56,17 @@ export default function NavMenu() {
           tabIndex={0}
           className={`
           menu
-          text-3xl
-          -right-2
           flex
           items-center
           justify-center
-          bg-base-300
-          max-lg:dropdown-content
+          lg:mr-6
           lg:menu-horizontal
-          w-screen
-          h-screen
+          max-lg:bg-base-300
+          max-lg:dropdown-content
+          max-lg:text-3xl
+          max-lg:-right-2
+          max-lg:w-screen
+          max-lg:h-screen
           z-50
           ${contentVisibility}`}>
           <li>

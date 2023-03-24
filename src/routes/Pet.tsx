@@ -11,8 +11,8 @@ export default function Pet() {
   useEffect(() => {}, []);
 
   return (
-    <div className='w-full h-full flex flex-col items-center lg:gap-32'>
-      <div className='lg:h-1/3 w-full'>
+    <div className='w-full h-full flex flex-col items-center'>
+      <div className='w-full'>
         <NavMenu />
       </div>
       <div className='lg:w-2/3 flex justify-center mt-16 pb-32'>

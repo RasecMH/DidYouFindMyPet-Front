@@ -44,11 +44,22 @@ export default function Dashboard() {
     <div className='w-screen h-screen'>
       <NavMenu />
 
-      <div className='flex flex-col items-center justify-start mt-16 w-full h-full gap-6'>
-        <div className='w-full px-6 flex items-center justify-between'>
+      <div
+        className='
+      flex 
+      max-lg:flex-col 
+      items-center
+      lg:items-start
+      justify-start
+      mt-16
+      w-full
+      h-full
+      gap-6
+      '>
+        <div className='w-full lg:w-1/3 px-6 flex items-center justify-between'>
           <HistoryContainer historyData={userDataValue.locationHistory} />
         </div>
-        <div className='w-full px-6 flex items-center justify-between lg:pr-4'>
+        <div className='w-full px-6 flex items-center justify-between lg:mr-4'>
           <PetsContainer petsData={userDataValue.pets} />
         </div>
       </div>
