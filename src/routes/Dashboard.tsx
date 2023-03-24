@@ -6,6 +6,7 @@ import useCookies from 'react-cookie/cjs/useCookies';
 import { useEffect, useState } from 'react';
 import { useSessionStorage } from 'usehooks-ts';
 import axios from 'axios';
+import ReactLoading from 'react-loading';
 
 export default function Dashboard() {
   const [sessionValue, setSessionValue] = useSessionStorage('token', '');
@@ -15,8 +16,10 @@ export default function Dashboard() {
     locationHistory: [],
   });
   const [cookies, setCookie, removeCookie] = useCookies();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     fetchUser();
   }, []);
 
@@ -35,12 +38,17 @@ export default function Dashboard() {
       console.log(res.data);
 
       setUserDataValue(res.data);
+      setIsLoading(false);
     } catch (error: any) {
       console.log(error.response.data.message);
     }
   };
 
-  return (
+  return isLoading ? (
+    <div className='w-screen h-screen flex justify-center items-center'>
+      <ReactLoading type='bubbles' color='#fff' />
+    </div>
+  ) : (
     <div className='w-screen h-screen'>
       <NavMenu />
 
