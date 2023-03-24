@@ -19,8 +19,8 @@ export default function PetCard({
   const [qrCodeBlob, setQrCodeBlob] = useState<string>('');
   const qrCodeLink =
     'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=';
-  const urlPath = 'http://localhost:5173/pet/';
-  const qrCodeWithUrl = `${qrCodeLink}${urlPath}${id}`;
+  const urlPath = process.env.BASE_URL || 'http://localhost:5173';
+  const qrCodeWithUrl = `${qrCodeLink}${urlPath}/pet/${id}`;
 
   useEffect(() => {
     const fetchData = async () => {
