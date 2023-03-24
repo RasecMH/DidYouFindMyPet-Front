@@ -20,7 +20,8 @@ export default function PetCard({
   const qrCodeLink =
     'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=';
   const urlPath =
-    import.meta.env.BASE_URL || 'https://did-you-find-my-pet-front.vercel.app';
+    import.meta.env.VERCEL_URL ||
+    'https://did-you-find-my-pet-front.vercel.app';
   const qrCodeWithUrl = `${qrCodeLink}${urlPath}/pet/${id}`;
 
   useEffect(() => {
