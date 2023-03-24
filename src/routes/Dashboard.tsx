@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { useSessionStorage } from 'usehooks-ts';
 import axios from 'axios';
 import ReactLoading from 'react-loading';
+import { useNavigate } from 'react-router';
 
 export default function Dashboard() {
   const [sessionValue, setSessionValue] = useSessionStorage('token', '');
@@ -17,6 +18,7 @@ export default function Dashboard() {
   });
   const [cookies, setCookie, removeCookie] = useCookies();
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -41,6 +43,7 @@ export default function Dashboard() {
       setIsLoading(false);
     } catch (error: any) {
       console.log(error.response.data.message);
+      navigate('/');
     }
   };
 

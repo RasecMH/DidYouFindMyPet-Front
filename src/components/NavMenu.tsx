@@ -1,17 +1,28 @@
 import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
+import { useSessionStorage } from 'usehooks-ts';
+import SingButton from './SingButton';
 
 export default function NavMenu() {
   const [cookies, setCookie, removeCookie] = useCookies();
+  const [sessionValue, setSessionValue] = useSessionStorage<string | boolean>(
+    'token',
+    ''
+  );
   const [swapClose, setSwapClose] = useState(true);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const handleLogout = () => {
     removeCookie('token');
+    sessionStorage.removeItem('token');
     navigate('/');
   };
   const contentVisibility = swapClose ? 'hidden' : 'visible';
+  const auth = cookies.token || sessionValue;
+  const signContent = pathname === '/register' ? 'Sing In' : 'Sign Up';
+  const signPath = pathname === '/register' ? '/' : '/register';
   return (
     <div
       className='
@@ -76,10 +87,10 @@ export default function NavMenu() {
             <label htmlFor='contact-modal'>Contact</label>
           </li>
           <li>
-            {cookies.token ? (
+            {auth ? (
               <a onClick={handleLogout}>Logout</a>
             ) : (
-              <a>Sign Up</a>
+              <SingButton content={signContent} path={signPath} />
             )}
           </li>
         </ul>

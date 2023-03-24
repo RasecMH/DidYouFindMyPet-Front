@@ -3,12 +3,27 @@ import RegisterForm from '../components/RegisterForm';
 import loginImage from '../assets/login-image.svg';
 import bgImage from '../assets/background.svg';
 import NavMenu from '../components/NavMenu';
+import { useSessionStorage } from 'usehooks-ts';
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router';
+import { useEffect } from 'react';
 
 interface RootInt {
   register?: boolean;
 }
 
 export default function Root({ register }: RootInt) {
+  const [sessionValue, setSessionValue] = useSessionStorage('token', '');
+  const [cookies, setCookie, removeCookie] = useCookies();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const auth = cookies.token || sessionValue;
+    if (auth) {
+      navigate('/dashboard');
+    }
+  }, []);
+
   return (
     <div className='w-screen h-screen  flex flex-col items-center justify-center'>
       <NavMenu />
