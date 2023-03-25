@@ -52,7 +52,7 @@ export default function Dashboard() {
 
   return isLoading ? (
     <div className='w-screen h-screen flex justify-center items-center'>
-      <ReactLoading type='bubbles' color='#fff' />
+      <ReactLoading type='bubbles' color='blue' />
     </div>
   ) : (
     <div className='w-screen h-screen'>

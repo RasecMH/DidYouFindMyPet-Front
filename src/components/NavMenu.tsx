@@ -103,24 +103,32 @@ export default function NavMenu() {
         <label htmlFor='contact-modal' className='modal cursor-pointer'>
           <label className='modal-box relative' htmlFor=''>
             <h3 className='text-lg font-bold'>Find me</h3>
-            <a
-              href='https://www.linkedin.com/in/cesarholanda/'
-              target='_blank'
-              className='py-4'>
-              Linkedin
-            </a>
-            <a
-              href='https://github.com/RasecMH'
-              target='_blank'
-              className='py-4'>
-              Github
-            </a>
-            <a
-              href='https://portfolio-rasecmh.vercel.app/'
-              target='_blank'
-              className='py-4'>
-              Portfolio
-            </a>
+            <ul className='flex flex-col gap-4 mt-6'>
+              <li>
+                <a
+                  href='https://www.linkedin.com/in/cesarholanda/'
+                  target='_blank'
+                  className='py-4'>
+                  Linkedin
+                </a>
+              </li>
+              <li>
+                <a
+                  href='https://github.com/RasecMH'
+                  target='_blank'
+                  className='py-4'>
+                  Github
+                </a>
+              </li>
+              <li>
+                <a
+                  href='https://portfolio-rasecmh.vercel.app/'
+                  target='_blank'
+                  className='py-4'>
+                  Portfolio
+                </a>
+              </li>
+            </ul>
           </label>
         </label>
       </div>
