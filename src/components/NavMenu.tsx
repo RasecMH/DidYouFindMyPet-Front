@@ -32,7 +32,9 @@ export default function NavMenu() {
     shadow-md 
     z-10'>
       <div className='flex-1'>
-        <a className='btn btn-ghost hover:bg-transparent normal-case text-xl lg:ml-14'>
+        <a
+          onClick={() => navigate('/')}
+          className='btn btn-ghost hover:bg-transparent normal-case text-xl lg:ml-14'>
           DidYouFindMyPet
         </a>
       </div>
@@ -100,11 +102,25 @@ export default function NavMenu() {
         <input type='checkbox' id='contact-modal' className='modal-toggle' />
         <label htmlFor='contact-modal' className='modal cursor-pointer'>
           <label className='modal-box relative' htmlFor=''>
-            <h3 className='text-lg font-bold'>Contact Modal</h3>
-            <p className='py-4'>
-              You've been selected for a chance to get one year of subscription
-              to use Wikipedia for free!
-            </p>
+            <h3 className='text-lg font-bold'>Find me</h3>
+            <a
+              href='https://www.linkedin.com/in/cesarholanda/'
+              target='_blank'
+              className='py-4'>
+              Linkedin
+            </a>
+            <a
+              href='https://github.com/RasecMH'
+              target='_blank'
+              className='py-4'>
+              Github
+            </a>
+            <a
+              href='https://portfolio-rasecmh.vercel.app/'
+              target='_blank'
+              className='py-4'>
+              Portfolio
+            </a>
           </label>
         </label>
       </div>
