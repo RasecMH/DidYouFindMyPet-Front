@@ -25,10 +25,9 @@ export default function Dashboard() {
     fetchUser();
   }, []);
 
+  const auth = cookies.token || sessionValue;
   const fetchUser = async () => {
     try {
-      const auth = cookies.token || sessionValue;
-
       const res = await axios.get(
         'https://did-you-find-my-pet.vercel.app/user/',
         {
@@ -43,6 +42,10 @@ export default function Dashboard() {
       setIsLoading(false);
     } catch (error: any) {
       console.log(error.response.data.message);
+      if (auth) {
+        removeCookie('token');
+        sessionStorage.removeItem('token');
+      }
       navigate('/');
     }
   };
