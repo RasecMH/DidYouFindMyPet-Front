@@ -21,6 +21,7 @@ export default function PetsContainer({ petsData }: Props) {
         {petsData.map((pet) => (
           <PetCard
             key={pet.id}
+            userId={pet.userId}
             id={pet.id}
             name={pet.name}
             description={pet.description}
