@@ -15,7 +15,9 @@ export default function PetCard({
   const urlPath =
     import.meta.env.VERCEL_URL ||
     'https://did-you-find-my-pet-front.vercel.app';
-  const qrCodeWithUrl = `${qrCodeLink}${urlPath}/pet/${id}`;
+  const encodedUrl = encodeURIComponent(`${urlPath}/pet/${id}`);
+  const qrCodeWithUrl = `${qrCodeLink}${encodedUrl}`;
+  console.log(qrCodeWithUrl);
 
   useEffect(() => {
     const fetchData = async () => {
