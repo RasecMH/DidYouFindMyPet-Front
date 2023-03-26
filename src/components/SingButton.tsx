@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router';
-interface SingInt {
+
+interface Props {
   content: string;
   path: string;
 }
 
-export default function SingButton({ content, path }: SingInt) {
+export default function SingButton({ content, path }: Props) {
   const navigate = useNavigate();
   console.log(path);
 

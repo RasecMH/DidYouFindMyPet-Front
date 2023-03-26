@@ -7,12 +7,12 @@ import uploadImage from '../utils/uploadImage';
 import ReactLoading from 'react-loading';
 
 export default function CreatePetForm() {
-  const [nameValue, setNameValue] = useState('');
-  const [descriptionValue, setDescriptionValue] = useState('');
-  const [healthValue, setHealthValue] = useState('');
+  const [nameValue, setNameValue] = useState<string>('');
+  const [descriptionValue, setDescriptionValue] = useState<string>('');
+  const [healthValue, setHealthValue] = useState<string>('');
   const [imageValue, setImageValue] = useState<FileList | null>(null);
-  const [submitErrorValue, setSubmitErrorValue] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [submitErrorValue, setSubmitErrorValue] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [cookies, setCookie, removeCookie] = useCookies();
   const [sessionValue, setSessionValue] = useSessionStorage('token', '');
   const navigate = useNavigate();

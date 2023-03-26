@@ -1,13 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
-interface petInfo {
-  id: number;
-  name: string;
-  description: string;
-  health: string;
-  image: string;
-}
+import { IPet } from '../interfaces/PetInterface';
 
 export default function PetCard({
   id,
@@ -15,7 +8,7 @@ export default function PetCard({
   description,
   health,
   image,
-}: petInfo) {
+}: IPet) {
   const [qrCodeBlob, setQrCodeBlob] = useState<string>('');
   const qrCodeLink =
     'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=';

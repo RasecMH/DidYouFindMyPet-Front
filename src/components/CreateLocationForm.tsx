@@ -6,27 +6,8 @@ import { useNavigate, useParams } from 'react-router';
 import { useCookies } from 'react-cookie';
 import { useSessionStorage } from 'usehooks-ts';
 import ReactLoading from 'react-loading';
-
-interface ICity {
-  id: number;
-  name: string;
-  stateId: number;
-  state: IState;
-}
-
-interface IState {
-  id: number;
-  name: string;
-  countryId: number;
-  country: ICountry;
-}
-
-interface ICountry {
-  id: number;
-  name: string;
-  phone: number;
-  code: string;
-}
+import { ICity } from '../interfaces/CityInterface';
+import { IPetWithUser } from '../interfaces/PetInterface';
 
 export default function CreateLocationForm() {
   const navigate = useNavigate();
@@ -36,22 +17,23 @@ export default function CreateLocationForm() {
     lat: 0,
     lng: 0,
   });
-  const [cityValue, setCityValue] = useState('');
+  const [cityValue, setCityValue] = useState<string>('');
   const [citiesAutoCompleteValue, setCitiesAutoCompleteValue] = useState<
     ICity[]
   >([]);
   const [patternValue, setPatternValue] = useState<string>('');
-  const [addressValue, setAddressValue] = useState('');
-  const [phoneValue, setPhoneValue] = useState('');
-  const [messageValue, setMessageValue] = useState('');
-  const [countryCodeValue, setCountryCodeValue] = useState('');
-  const [submitErrorValue, setSubmitErrorValue] = useState('');
-  const [submitSuccessValue, setSubmitSuccessValue] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [petDataValue, setPetDataValue] = useState<any>({
+  const [addressValue, setAddressValue] = useState<string>('');
+  const [phoneValue, setPhoneValue] = useState<string>('');
+  const [messageValue, setMessageValue] = useState<string>('');
+  const [countryCodeValue, setCountryCodeValue] = useState<string>('');
+  const [submitErrorValue, setSubmitErrorValue] = useState<string>('');
+  const [submitSuccessValue, setSubmitSuccessValue] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [petDataValue, setPetDataValue] = useState<IPetWithUser>({
     description: '',
     health: '',
     id: 0,
+    userId: 0,
     image: '',
     name: '',
     user: {
@@ -59,8 +41,13 @@ export default function CreateLocationForm() {
       cityId: 0,
       city: {
         name: '',
+        stateId: 0,
+        id: 0,
         state: {
+          id: 0,
           name: '',
+          countryId: 0,
+          country: { id: 0, name: '', phone: 0, code: '' },
         },
       },
       code: '',
@@ -139,10 +126,8 @@ export default function CreateLocationForm() {
         payload
       );
       console.log(res);
-      // setCookie('token', res.data.token);
       setIsLoading(false);
       setSubmitSuccessValue('Success');
-      // navigate('/dashboard');
     } catch (error: any) {
       setIsLoading(false);
       setSubmitErrorValue(error.response.data.message);

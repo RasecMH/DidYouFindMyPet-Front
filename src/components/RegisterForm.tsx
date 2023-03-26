@@ -3,44 +3,24 @@ import { FormEvent, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router';
 import ReactLoading from 'react-loading';
-
-interface ICity {
-  id: number;
-  name: string;
-  stateId: number;
-  state: IState;
-}
-
-interface IState {
-  id: number;
-  name: string;
-  countryId: number;
-  country: ICountry;
-}
-
-interface ICountry {
-  id: number;
-  name: string;
-  phone: number;
-  code: string;
-}
+import { ICity } from '../interfaces/CityInterface';
 
 export default function RegisterForm() {
   const navigate = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies();
-  const [nameValue, setNameValue] = useState('');
-  const [emailValue, setEmailValue] = useState('');
-  const [passwordValue, setPasswordValue] = useState('');
-  const [cityValue, setCityValue] = useState('');
+  const [nameValue, setNameValue] = useState<string>('');
+  const [emailValue, setEmailValue] = useState<string>('');
+  const [passwordValue, setPasswordValue] = useState<string>('');
+  const [cityValue, setCityValue] = useState<string>('');
   const [citiesAutoCompleteValue, setCitiesAutoCompleteValue] = useState<
     ICity[]
   >([]);
   const [patternValue, setPatternValue] = useState<string>('');
-  const [addressValue, setAddressValue] = useState('');
-  const [phoneValue, setPhoneValue] = useState('');
-  const [countryCodeValue, setCountryCodeValue] = useState('');
-  const [submitErrorValue, setSubmitErrorValue] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [addressValue, setAddressValue] = useState<string>('');
+  const [phoneValue, setPhoneValue] = useState<string>('');
+  const [countryCodeValue, setCountryCodeValue] = useState<string>('');
+  const [submitErrorValue, setSubmitErrorValue] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleCityChange = async (e: any) => {
     const value = e.target.value.split(', ');

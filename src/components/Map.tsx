@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import FlyMapTo from './FlyToMap';
 
-interface MapInfo {
+interface Props {
   center: {
     lat: number;
     lng: number;
@@ -9,7 +9,7 @@ interface MapInfo {
   petName: string;
 }
 
-export default function Map({ center, petName }: MapInfo) {
+export default function Map({ center, petName }: Props) {
   console.log('att');
 
   return (

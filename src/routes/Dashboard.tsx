@@ -8,16 +8,17 @@ import { useSessionStorage } from 'usehooks-ts';
 import axios from 'axios';
 import ReactLoading from 'react-loading';
 import { useNavigate } from 'react-router';
+import { IUserData } from '../interfaces/UserDataInterface';
 
 export default function Dashboard() {
   const [sessionValue, setSessionValue] = useSessionStorage('token', '');
-  const [userDataValue, setUserDataValue] = useState<any>({
+  const [userDataValue, setUserDataValue] = useState<IUserData>({
     user: {},
     pets: [],
     locationHistory: [],
   });
   const [cookies, setCookie, removeCookie] = useCookies();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -9,11 +9,11 @@ import UnderConstructionModal from './UnderConstructionModal';
 export default function LoginForm() {
   const [cookies, setCookie, removeCookie] = useCookies();
   const [sessionValue, setSessionValue] = useSessionStorage('token', '');
-  const [emailValue, setEmailValue] = useState('');
-  const [passwordValue, setPasswordValue] = useState('');
-  const [rememberCheck, setRememberCheck] = useState(false);
-  const [submitErrorValue, setSubmitErrorValue] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [emailValue, setEmailValue] = useState<string>('');
+  const [passwordValue, setPasswordValue] = useState<string>('');
+  const [rememberCheck, setRememberCheck] = useState<boolean>(false);
+  const [submitErrorValue, setSubmitErrorValue] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent) => {

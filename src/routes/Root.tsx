@@ -8,11 +8,11 @@ import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 
-interface RootInt {
+interface Props {
   register?: boolean;
 }
 
-export default function Root({ register }: RootInt) {
+export default function Root({ register }: Props) {
   const [sessionValue, setSessionValue] = useSessionStorage('token', '');
   const [cookies, setCookie, removeCookie] = useCookies();
   const navigate = useNavigate();
@@ -50,9 +50,7 @@ export default function Root({ register }: RootInt) {
         lg:flex 
         lg:items-center 
         lg:justify-center
-        lg:bg-[url("https://source.unsplash.com/random/?pet/")]'>
-          {/* <img className='w-2/3' src={loginImage} /> */}
-        </div>
+        lg:bg-[url("https://source.unsplash.com/random/?pet/")]'></div>
       </div>
     </div>
   );

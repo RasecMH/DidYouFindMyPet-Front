@@ -10,7 +10,7 @@ export default function NavMenu() {
     'token',
     ''
   );
-  const [swapClose, setSwapClose] = useState(true);
+  const [swapClose, setSwapClose] = useState<boolean>(true);
   const navigate = useNavigate();
   const { pathname } = useLocation();
 

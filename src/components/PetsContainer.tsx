@@ -1,17 +1,8 @@
 import PetCard from '../components/PetCard';
-import PetsMock from '../utils/PetsMock.json';
-
-interface petsInfo {
-  id: number;
-  name: string;
-  city: string;
-  description: string;
-  health: string;
-  image: string;
-}
+import { IPet } from '../interfaces/PetInterface';
 
 interface Props {
-  petsData: petsInfo[] | [];
+  petsData: IPet[] | [];
 }
 
 export default function PetsContainer({ petsData }: Props) {
