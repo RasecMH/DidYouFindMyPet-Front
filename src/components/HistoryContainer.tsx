@@ -7,8 +7,6 @@ interface Props {
 }
 
 export default function HistoryContainer({ historyData }: Props) {
-  console.log(historyData);
-
   return (
     <div className='w-full'>
       <h1 className='text-4xl'>History</h1>

@@ -30,7 +30,6 @@ export default function LoginForm() {
         'https://did-you-find-my-pet.vercel.app/user/login',
         payload
       );
-      console.log(res);
       if (rememberCheck) {
         setCookie('token', res.data.token);
       } else {
@@ -41,7 +40,7 @@ export default function LoginForm() {
     } catch (error: any) {
       setIsLoading(false);
       setSubmitErrorValue(error.response.data.message);
-      console.log(error.response.data.message);
+      console.error(error.response.data.message);
     }
   };
 

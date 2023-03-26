@@ -2,17 +2,12 @@ import { FormEvent, useEffect, useState } from 'react';
 import formatPhone from '../utils/formatPhone';
 import Map from './Map';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router';
-import { useCookies } from 'react-cookie';
-import { useSessionStorage } from 'usehooks-ts';
+import { useParams } from 'react-router';
 import ReactLoading from 'react-loading';
 import { ICity } from '../interfaces/CityInterface';
 import { IPetWithUser } from '../interfaces/PetInterface';
 
 export default function CreateLocationForm() {
-  const navigate = useNavigate();
-  const [cookies, setCookie, removeCookie] = useCookies();
-  const [sessionValue, setSessionValue] = useSessionStorage('token', '');
   const [locationValue, setLocationValue] = useState({
     lat: 0,
     lng: 0,
@@ -91,11 +86,10 @@ export default function CreateLocationForm() {
       const res = await axios.get(
         `https://did-you-find-my-pet.vercel.app/pet/${id}`
       );
-      console.log(res.data);
 
       setPetDataValue(res.data);
     } catch (error: any) {
-      console.log(error.response.data.message);
+      console.error(error.response.data.message);
     }
   };
 
@@ -125,13 +119,12 @@ export default function CreateLocationForm() {
         'https://did-you-find-my-pet.vercel.app/location/create',
         payload
       );
-      console.log(res);
       setIsLoading(false);
       setSubmitSuccessValue('Success');
     } catch (error: any) {
       setIsLoading(false);
       setSubmitErrorValue(error.response.data.message);
-      console.log(error.response.data.message);
+      console.error(error.response.data.message);
     }
   };
 

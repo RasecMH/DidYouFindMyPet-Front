@@ -64,14 +64,13 @@ export default function RegisterForm() {
         'https://did-you-find-my-pet.vercel.app/user/register',
         payload
       );
-      console.log(res);
       setCookie('token', res.data.token);
       setIsLoading(false);
       navigate('/dashboard');
     } catch (error: any) {
       setIsLoading(false);
       setSubmitErrorValue(error.response.data.message);
-      console.log(error.response.data.message);
+      console.error(error.response.data.message);
     }
   };
 

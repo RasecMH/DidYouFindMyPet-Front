@@ -10,8 +10,6 @@ interface Props {
 }
 
 export default function Map({ center, petName }: Props) {
-  console.log('att');
-
   return (
     <div className='h-80 w-full mt-4 z-0'>
       <MapContainer

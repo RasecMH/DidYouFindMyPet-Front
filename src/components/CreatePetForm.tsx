@@ -40,13 +40,12 @@ export default function CreatePetForm() {
           },
         }
       );
-      console.log(res);
       setIsLoading(false);
       navigate(0);
     } catch (error: any) {
       setIsLoading(false);
       setSubmitErrorValue(error.response.data.message);
-      console.log(error.response.data.message);
+      console.error(error.response.data.message);
     }
   };
 
