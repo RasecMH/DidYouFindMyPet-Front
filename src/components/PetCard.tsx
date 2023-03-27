@@ -63,7 +63,7 @@ export default function PetCard({
             <h1 className='text-lg font-bold'>Health:</h1>
             <p className='py-2'>{health}</p>
             <div className='flex flex-col gap-6 mt-5 justify-center items-center'>
-              <img src={qrCodeWithUrl} />
+              <img src={qrCodeBlob} />
               <a href={qrCodeBlob} download={name} target='_blank'>
                 <button type='button' className='btn'>
                   DOWNLOAD
